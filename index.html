@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+
+   <TITLE>reinforcement-learning-2x2</TITLE>
+
+   <META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+   <META name=keywords content="Markov chains, NetLogo, agent-based modelling">
+
+   <META name=Description content="reinforcement-learning-2x2 is an agent-based model where two reinforcement learners play a 2x2 game.">
+
+   <META name=Authors content="Luis R. Izquierdo, Segismundo S. Izquierdo">
+
+   <STYLE type="text/css">
+      H1 {
+         BACKGROUND-COLOR: #111199;
+         color: #ffffff;
+         font-family: monospace;
+         padding: 5px;
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      H2 {
+         BACKGROUND-COLOR: #66ccff;
+         font-family: arial;
+         padding: 4px;
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      H3 {
+         BACKGROUND-COLOR: #cccccc;
+         font-family: verdana;
+         font-weight: bold;
+         padding: 4px;
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      p {
+         font-family: monospace
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      table {
+         font-family: monospace
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      ul {
+         font-family: monospace
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      ol {
+         font-family: monospace
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      i.parameter {
+         font-family: arial;
+         color: red;
+         font-weight: bold
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      i.button {
+         font-family: arial;
+         color: blue;
+         font-weight: bold
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      i.value {
+         font-family: arial;
+         color: #444444;
+         font-weight: bold
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      i.slider {
+         font-family: arial;
+         color: green;
+         font-weight: bold
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      i.monitor {
+         font-family: arial;
+         color: #B8860B;
+         font-weight: bold
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      i.plot {
+         font-family: arial;
+         color: brown;
+         font-weight: bold
+      }
+   </STYLE>
+
+</HEAD>
+
+<body>
+
+   <H1>reinforcement-learning-2x2</H1>
+   <h3>Luis R. Izquierdo &amp; Segismundo S. Izquierdo</h3>
+
+   <H2>HOW TO INSTALL THE MODEL</H2>
+
+   <p>To use reinforcement-learning-2x2, you will have to install <a target="_blank" href="http://ccl.northwestern.edu/netlogo/">NetLogo 5.3.1 (free and open source)</a> and download <a href="reinforcement-learning-2x2.nlogo">the model itself</a>. Unzip the downloaded file and click on reinforcement-learning-2x2.nlogo</p>
+
+   <H2>WHAT IS IT?</H2>
+
+   <p><b>reinforcement-learning-2x2</b> is an agent-based model where two reinforcement learners play a 2x2 game. Reinforcement learners use their experience to choose or avoid certain actions based on the observed consequences. Actions that led to satisfactory outcomes (i.e. outcomes that met or exceeded aspirations) in the past tend to be repeated in the future, whereas choices that led to unsatisfactory experiences are avoided.</p>
+
+   <H2>HOW IT WORKS</H2>
+
+   <p>In this model there are two reinforcement learners playing a 2x2 game repeatedly. Each player r (r = 1,2) has a certain propensity to cooperate p(r,C) and a certain propensity to defect p(r,D); these propensities are always multiples of 1/(world-height &ndash; 1) for player 1 and multiples of 1/(world-width &ndash; 1) for player 2. In the absence of noise, players cooperate with probability p(r,C) and defect with probability p(r,D), but they may also suffer from "trembling hands", i.e. after having decided which action to undertake, each player r may select the wrong action with probability <i class="parameter">trembling-hands-noise</i>.</p>
+
+   <p>The revision of propensities takes place following a reinforcement learning approach: players increase their propensity of undertaking a certain action if it led to payoffs above their <i class="parameter">aspiration level</i> A(r), and decrease this propensity otherwise. Specifically, if a player r receives a payoff greater or equal to her aspiration threshold A(r), she increments the propensity of conducting the selected action in 1/(world-height &ndash; 1) if r = 1 or in 1/(world-width &ndash; 1) if r = 2 (within the natural limits of probabilities). Otherwise she decreases this propensity in the same quantity. The updated propensity for the action not selected derives from the constraint that propensities must add up to one.</i>
+   </p>
+
+   <h3>HOW TO USE IT</h3>
+
+   <p>The view is used here to represent players' propensities to cooperate, with player 1's propensity to cooperate in the vertical axis and player 2's propensity to cooperate in the horizontal axis. The red circle represents the current state of the system and its label (CC, CD, DC, or DD) denotes the last outcome that occurred. Patches are coloured in shades of blue according to the number of times that the system has visited the state they represent: the higher the number of visits, the darker the shade of blue. The plot beneath the representation of the state space shows the time series of both players' propensity to cooperate.</p>
+
+   <H2>LICENCE</H2>
+   <p><b>reinforcement-learning-2x2</b> is an agent-based model where two reinforcement learners play a 2x2 game.
+      <br>Copyright (C) 2008 <a target="_blank" href="http://luis.izqui.org">Luis R. Izquierdo</a> &amp; <a target="_blank" href="http://segis.izqui.org">Segismundo S. Izquierdo</a></p>
+
+   <p>This program is free software; you can redistribute it and/or modify it under the terms of the <a target="_blank" href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a> as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.</p>
+   <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the <a target="_blank" href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a> for more details.</p>
+   <p>You can download a copy of the <a target="_blank" href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a> by clicking <a target="_blank" href="./LICENSE">here</a>; you can also get a printed copy writing to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.</p>
+   <p>Contact information:
+      <br>Luis R. Izquierdo
+      <br> University of Burgos, Spain.
+      <br> e-mail: <a href="mailto:lrizquierdo@ubu.es">lrizquierdo@ubu.es</a>
+   </p>
+
+
+   <H2>MODELLERS</H2>
+   <p>This program has been designed and implemented by <a target="_blank" href="http://luis.izqui.org">Luis R. Izquierdo</a> &amp; <a target="_blank" href="http://segis.izqui.org">Segismundo S. Izquierdo</a>.</p>
+   <hr>
+
+</body>
+
+</html>
