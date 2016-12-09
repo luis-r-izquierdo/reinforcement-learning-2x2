@@ -98,6 +98,14 @@
          font-weight: bold
       }
    </STYLE>
+   <STYLE type="text/css">
+      img {
+         max-width: 100%;
+         height: auto;
+         width: auto\9;
+         /* ie8 */
+      }
+   </STYLE>
 
 </HEAD>
 
@@ -117,6 +125,8 @@
    <H2>HOW IT WORKS</H2>
 
    <p>In this model there are two reinforcement learners playing a 2x2 game repeatedly. Each player r (r = 1,2) has a certain propensity to cooperate p(r,C) and a certain propensity to defect p(r,D); these propensities are always multiples of 1/(world-height &ndash; 1) for player 1 and multiples of 1/(world-width &ndash; 1) for player 2. In the absence of noise, players cooperate with probability p(r,C) and defect with probability p(r,D), but they may also suffer from "trembling hands", i.e. after having decided which action to undertake, each player r may select the wrong action with probability <i class="parameter">trembling-hands-noise</i>.</p>
+
+   <img style="margin:0px auto;display:block" src="./reinforcement-learning-2x2.png" alt="timeline" />
 
    <p>The revision of propensities takes place following a reinforcement learning approach: players increase their propensity of undertaking a certain action if it led to payoffs above their <i class="parameter">aspiration level</i> A(r), and decrease this propensity otherwise. Specifically, if a player r receives a payoff greater or equal to her aspiration threshold A(r), she increments the propensity of conducting the selected action in 1/(world-height &ndash; 1) if r = 1 or in 1/(world-width &ndash; 1) if r = 2 (within the natural limits of probabilities). Otherwise she decreases this propensity in the same quantity. The updated propensity for the action not selected derives from the constraint that propensities must add up to one.</i>
    </p>
